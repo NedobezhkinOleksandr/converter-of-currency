@@ -1,0 +1,62 @@
+<div class="calculator">
+  <div class="calculator__field">
+    <div class="calculator__name">
+      {{ getCurrencyName(currency1) }}
+    </div>
+    <div class="calculator__main">
+      <select
+        class="calculator__select"
+        [(ngModel)]="currency1"
+        (ngModelChange)="convertCurrency(true)"
+      >
+        <option
+          *ngFor="let currency of exchangeRates"
+          [value]="currency.cc"
+        >
+          {{ currency.cc }}
+        </option>
+      </select>
+      <input
+        class="calculator__input"
+        type="text"
+        [(ngModel)]="amount1"
+        (ngModelChange)="convertCurrency(true)"
+      />
+    </div>
+    <span
+      class="calculator__error"
+      *ngIf="!isAmountValid(amount1)"
+    >
+      Введите число
+    </span>
+  </div>
+
+  <div class="calculator__field">
+    <div class="calculator__name">{{ getCurrencyName(currency2) }}</div>
+    <div class="calculator__main">
+      <select
+        class="calculator__select"
+        [(ngModel)]="currency2"
+        (ngModelChange)="convertCurrency(false)"
+      >
+        <option
+          *ngFor="let currency of exchangeRates"
+          [value]="currency.cc"
+        >
+          {{ currency.cc }}
+        </option>
+      </select>
+      <input
+        class="calculator__input"
+        type="text" [(ngModel)]="amount2"
+        (ngModelChange)="convertCurrency(false)"
+      />
+    </div>
+    <span
+      class="calculator__error"
+      *ngIf="!isAmountValid(amount2)"
+    >
+      Введите число
+    </span>
+  </div>
+</div>
